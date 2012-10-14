@@ -58,7 +58,7 @@
                     nostroke:true,
                     gutter:-40
                 });
-                writeY(paper,h,w);
+                writeAxes(paper,h,w);
 
             }
         }
@@ -90,10 +90,10 @@
     param h высоата поля
     param w ширина поля
      */
-    function writeY(paper,h,w){
+    function writeAxes(paper,h,w){
         // задаем смещение для того чтобы сдвинут вправо и снизу-вверх наш график
         // чтобы оси рисовались не прям на границах поля для отрисовки
-        var delta = 10;
+        var delta =10;
         var path = "M"+delta+",0L"+delta+","+(h-delta)+"H"+w;
         var lineXY = paper.path(path);
         var c = 10; // количество делений на оси
@@ -110,7 +110,13 @@
             paper.path(p);
             d+=w/c;
         }
-
+        // рисуем стрелки на координатной оси
+        var dArrow = 10;
+        var xA = 10+Math.sin(30);
+        var yA = 0+ Math.sin(30);
+        //paper.path("M10,0L500,0");
+        paper.path("M"+delta + ","+0 + "L"+0+","+delta);
+        paper.path("M"+delta + ","+0 + "L"+2*delta+","+delta);
     }
 
 
