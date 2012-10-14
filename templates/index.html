@@ -46,12 +46,12 @@
                 for (var x in xxx) {
                     y.push(data['b0'] + xxx[x] * data['b1']);
                 }
-                paper.linechart(40, 70, 250, 250, xxx, y, {
+                paper.linechart(100, 70, 250, 250, xxx, y, {
                     smooth:false,
                     symbol:'circle',
                     gutter:-40
                 });
-                paper.linechart(40, 70, 250, 250, xxx, yyy, {
+                paper.linechart(100, 70, 250, 250, xxx, yyy, {
                     smooth:true,
                     colors:['#F00'],
                     symbol:'circle',
@@ -84,22 +84,29 @@
         return rex;
 
     }
+    /*
+    Функция отрисовки осей координат
+    param paper поле для отрисовки
+    param h высоата поля
+    param w ширина поля
+     */
     function writeY(paper,h,w){
-        var dx = 10;
-        var dy = 10;
-        var path = "M"+dx+",0L"+dx+","+(h-dx)+"H"+w;
+        // задаем смещение для того чтобы сдвинут вправо и снизу-вверх наш график
+        // чтобы оси рисовались не прям на границах поля для отрисовки
+        var delta = 10;
+        var path = "M"+delta+",0L"+delta+","+(h-delta)+"H"+w;
         var lineXY = paper.path(path);
-        var c = 21;
-        var d = (h-dx) - h/c;
+        var c = 10; // количество делений на оси
+        // для оси Y считаем с какой точки начинать рисовать
+        // рисоввть будет сверху вниз
+        var d = (h-delta) - h/c;
         for(var i = 0 ; i < c ; i++){
-
-            paper.path("M5,"+d+"H40");
+            paper.path("M0,"+d+"H20");
             d-=h/c;
         }
-        var d = w/c +dx/2;
+        var d = w/c +delta/2;
         for(var i = 0 ; i < c ;i++){
-            var p = "M"+d+",440V480";
-            console.log(p);
+            var p = "M"+d+",460V480";
             paper.path(p);
             d+=w/c;
         }
