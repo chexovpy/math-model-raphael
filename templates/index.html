@@ -115,8 +115,12 @@
         var xA = 10+Math.sin(30);
         var yA = 0+ Math.sin(30);
         //paper.path("M10,0L500,0");
+        // draw arrow Y
         paper.path("M"+delta + ","+0 + "L"+0+","+delta);
         paper.path("M"+delta + ","+0 + "L"+2*delta+","+delta);
+        // draw arrow X
+        paper.path("M640,470L630,460");
+        paper.path("M640,470L630,480");
     }
 
 
