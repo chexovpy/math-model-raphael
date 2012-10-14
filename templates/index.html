@@ -59,6 +59,7 @@
                     gutter:-40
                 });
                 writeAxes(paper,h,w);
+                elementCircle(paper,getNewX(5,10,w,10),getNewY(5,10,h,10),10);
 
             }
         }
@@ -83,6 +84,18 @@
         rex.drag(move, start, up);
         return rex;
 
+    }
+    function getNewY(y,delta,h,c){
+        var c_h = h/c;
+        var n_y = ((h - c_h)-delta)-c_h*(y-1);
+        console.log(n_y);
+        return n_y;
+    }
+    function getNewX(x,delta,w,c){
+        var c_w = w/c;
+        var n_x = (w/c+delta/2)+c_w*(x-1);
+        console.log(n_x);
+        return n_x;
     }
     /*
     Функция отрисовки осей координат
