@@ -36,8 +36,10 @@
             if (data['result'] !== 'ok') {
             } else {
                 var m = $("#main");
+                var w = 640;
+                var h = 480;
                 m.append(data['func'] + "<br>" + "<p>r = " + data['rec'] + "</p>");
-                var paper = Raphael(40, 100, 640, 480);
+                var paper = Raphael(40, 100, w, h);
                 var y = [];
                 var yyy = [2, 5, 14, 16, 21, 23, 25, 31, 34, 41, 49, 44];
                 var xxx = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -56,8 +58,8 @@
                     nostroke:true,
                     gutter:-40
                 });
+                writeY(paper,h,w);
 
-                c = elementCircle(paper,10,10,10);
             }
         }
     });
@@ -80,6 +82,27 @@
 
         rex.drag(move, start, up);
         return rex;
+
+    }
+    function writeY(paper,h,w){
+        var dx = 10;
+        var dy = 10;
+        var path = "M"+dx+",0L"+dx+","+(h-dx)+"H"+w;
+        var lineXY = paper.path(path);
+        var c = 21;
+        var d = (h-dx) - h/c;
+        for(var i = 0 ; i < c ; i++){
+
+            paper.path("M5,"+d+"H40");
+            d-=h/c;
+        }
+        var d = w/c +dx/2;
+        for(var i = 0 ; i < c ;i++){
+            var p = "M"+d+",440V480";
+            console.log(p);
+            paper.path(p);
+            d+=w/c;
+        }
 
     }
 
